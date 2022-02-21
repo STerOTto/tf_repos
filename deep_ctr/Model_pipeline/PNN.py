@@ -375,8 +375,8 @@ def main(_):
         #}
         #serving_input_receiver_fn = tf.estimator.export.build_parsing_serving_input_receiver_fn(feature_spec)
         feature_spec = {
-            'feat_ids': tf.placeholder(dtype=tf.int64, shape=[None, FLAGS.field_size], name='feat_ids'),
-            'feat_vals': tf.placeholder(dtype=tf.float32, shape=[None, FLAGS.field_size], name='feat_vals')
+            'feat_ids': tf.sparse_placeholder(dtype=tf.int64, name='feat_ids'),
+            'feat_vals': tf.sparse_placeholder(dtype=tf.float32, name='feat_vals')
         }
         serving_input_receiver_fn = tf.estimator.export.build_raw_serving_input_receiver_fn(feature_spec)
         Estimator.export_savedmodel(FLAGS.servable_model_dir, serving_input_receiver_fn)
