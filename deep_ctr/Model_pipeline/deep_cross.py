@@ -78,7 +78,7 @@ def build_embedding_layers(feature_columns, input_layers_dict, is_linear):
     # 如果是用于线性部分的embedding层，其维度为1，否则维度就是自己定义的embedding维度
     if is_linear:
         for fc in sparse_feature_columns:
-            embedding_layers_dict[fc.name] = Embedding(fc.vocabulary_size + 1, 1, name = '1d_emb_' + fc.name)
+            embedding_layers_dict[fc.name] = keras.Embedding(fc.vocabulary_size + 1, 1, name = '1d_emb_' + fc.name)
     else:
         for fc in sparse_feature_columns:
             embedding_layers_dict[fc.name] = Embedding(fc.vocabulary_size + 1, fc.embedding_dim , name = 'kd_emb_' + fc.name) 
